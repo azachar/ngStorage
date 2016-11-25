@@ -130,14 +130,12 @@
               '$rootScope',
               '$window',
               '$log',
-              '$timeout',
               '$document',
 
               function(
                   $rootScope,
                   $window,
                   $log,
-                  $timeout,
                   $document
               ){
 
@@ -204,7 +202,10 @@
                 _last$storage = angular.copy($storage);
 
                 $rootScope.$watch(function() {
-                    _debounce || (_debounce = $timeout($storage.$apply, 100, false));
+                   if (!_debounce) {
+                     setTimeout($storage.$apply, 100);
+                     _debounce = true;
+                   }
                 });
 
                 // #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`

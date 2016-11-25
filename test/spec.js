@@ -110,7 +110,6 @@ describe('ngStorage', function() {
                 $storage.newKey = 'some value';
                 $rootScope.$digest();
 
-                $timeout.flush();
 
                 setTimeout(function() {
                     expect($window[storageType].data)
@@ -127,7 +126,6 @@ describe('ngStorage', function() {
                 $storage.existing = 'updated';
                 $rootScope.$digest();
 
-                $timeout.flush();
 
                 setTimeout(function() {
                     expect($window[storageType].data)
@@ -144,7 +142,6 @@ describe('ngStorage', function() {
                 delete $storage.existing;
                 $rootScope.$digest();
 
-                $timeout.flush();
 
                 setTimeout(function() {
                     expect($window[storageType].data).to.deep.equal({});
@@ -165,7 +162,6 @@ describe('ngStorage', function() {
                     $storage.$reset();
                     $rootScope.$digest();
 
-                    $timeout.flush();
 
                     setTimeout(done, 125);
                 });
@@ -204,7 +200,6 @@ describe('ngStorage', function() {
                     $storage.$reset({some: 'value'});
                     $rootScope.$digest();
 
-                    $timeout.flush();
 
                     setTimeout(done, 125);
                 });
@@ -248,7 +243,6 @@ describe('ngStorage', function() {
                     });
 
                     $rootScope.$digest();
-                    $timeout.flush();
 
                     setTimeout(done, 125);
                 });
@@ -348,7 +342,6 @@ describe('ngStorage', function() {
                     $storage.bar = 'baz';
                     $rootScope.$digest();
 
-                    $timeout.flush();
 
                     setTimeout(function() {
                         expect($window[storageType].getItem('foo-bar')).to.not.be.undefined;
@@ -371,7 +364,6 @@ describe('ngStorage', function() {
                     $storage.bar = 'baz';
                     $rootScope.$digest();
 
-                    $timeout.flush();
 
                     setTimeout(function() {
                         expect($storage.bar).to.not.be.undefined;

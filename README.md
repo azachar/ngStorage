@@ -7,6 +7,14 @@ ngStorage
 
 An [AngularJS](https://github.com/angular/angular.js) module that makes Web Storage working in the *Angular Way*. Contains two services: `$localStorage` and `$sessionStorage`.
 
+### Fork info
+This fork address debounce issue with protractor by using ``setTimeout`` instead of ``$timeout``.
+
+#### Install
+``
+bower install azachar/ngstorage#master
+``
+
 ### Differences with Other Implementations
 
 * **No Getter 'n' Setter Bullshit** - Right from AngularJS homepage: "Unlike other frameworks, there is no need to [...] wrap the model in accessors methods. Just plain old JavaScript here." Now you can enjoy the same benefit while achieving data persistence with Web Storage.
@@ -195,13 +203,13 @@ To change how ngStorage serializes and deserializes values (uses JSON by default
 
 ```javascript
 angular.module('app', ['ngStorage'])
-.config(['$localStorageProvider', 
+.config(['$localStorageProvider',
   function ($localStorageProvider) {
     var mySerializer = function (value) {
       // Do what you want with the value.
       return value;
     };
-    
+
     var myDeserializer = function (value) {
       return value;
     };
