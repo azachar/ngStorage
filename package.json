@@ -1,5 +1,5 @@
 {
-  "name": "ngstorage",
+  "name": "ngstorage-mock",
   "version": "0.3.11-mock",
   "author": "Gias Kay Lee",
   "licenses": [
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gsklee/ngStorage"
+    "url": "https://github.com/azachar/ngStorage-mock"
   },
   "main": "ngStorage.js",
   "scripts": {

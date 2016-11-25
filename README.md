@@ -12,8 +12,7 @@ This fork address debounce issue with protractor by using ``setTimeout`` instead
 
 #### Install
 ``
-bower install azachar/ngstorage#master
-``
+bower install azachar/ngstorage-mock#master``
 
 ### Differences with Other Implementations
 
@@ -80,7 +79,7 @@ Usage
 
 ```javascript
 angular.module('app', [
-    'ngStorage'
+    'ngStorageMock'
 ]).controller('Ctrl', function(
     $scope,
     $localStorage,
@@ -175,7 +174,7 @@ To read and set values during the Angular config phase use the `.get/.set`
 functions provided by the provider.
 
 ```javascript
-var app = angular.module('app', ['ngStorage'])
+var app = angular.module('app', ['ngStorageMock'])
 .config(['$localStorageProvider',
     function ($localStorageProvider) {
         $localStorageProvider.get('MyKey');
@@ -190,7 +189,7 @@ To change the prefix used by ngStorage use the provider function `setKeyPrefix`
 during the config phase.
 
 ```javascript
-var app = angular.module('app', ['ngStorage'])
+var app = angular.module('app', ['ngStorageMock'])
 .config(['$localStorageProvider',
     function ($localStorageProvider) {
         $localStorageProvider.setKeyPrefix('NewPrefix');
@@ -202,7 +201,7 @@ var app = angular.module('app', ['ngStorage'])
 To change how ngStorage serializes and deserializes values (uses JSON by default) you can use your own functions.
 
 ```javascript
-angular.module('app', ['ngStorage'])
+angular.module('app', ['ngStorageMock'])
 .config(['$localStorageProvider',
   function ($localStorageProvider) {
     var mySerializer = function (value) {
