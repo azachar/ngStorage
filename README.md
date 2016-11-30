@@ -8,11 +8,22 @@ ngStorage
 An [AngularJS](https://github.com/angular/angular.js) module that makes Web Storage working in the *Angular Way*. Contains two services: `$localStorage` and `$sessionStorage`.
 
 ### Fork info
-This fork address debounce issue with protractor by using ``setTimeout`` instead of ``$timeout``.
+This fork address debounce issue with protractor by using ``$interval`` instead of ``$timeout``.
 
 #### Install
+Do not install this via bower, you might have 2 ngStorage modules - e.g. your original ngStorage and this mock, instead use ``addMockModule`` in your protractor and install it via npm.
+
 ``
-bower install azachar/ngstorage-mock#master``
+npm install azachar/ngstorage-mock#master --save-dev
+``
+
+In your protractor code, replace your original ``ngStorage`` with this mock
+
+```js
+var ngStorageMock = require('ngstorage-mock');
+//fix issues with an infinite waiting of $timeout (which this mock replaces with $interval)
+browser.addMockModule('ngStorage', ngStorageMock);
+```
 
 ### Differences with Other Implementations
 

@@ -4,8 +4,8 @@
   if (typeof define === 'function' && define.amd) {
     define(['angular'], factory);
   } else if (typeof exports === 'object') {
-    factory(require('angular'));
-    module.exports = 'ngStorage';
+    // factory(require('angular'));
+    module.exports = factory;
   } else {
     // Browser globals (root is window), we don't register it.
     factory(root.angular);
@@ -130,12 +130,14 @@
               '$rootScope',
               '$window',
               '$log',
+              '$interval',
               '$document',
 
               function(
                   $rootScope,
                   $window,
                   $log,
+                  $interval,
                   $document
               ){
 
@@ -172,6 +174,7 @@
                         $apply: function() {
                             var temp$storage;
 
+                            $interval.cancel(_debounce);
                             _debounce = null;
 
                             if (!angular.equals($storage, _last$storage)) {
@@ -202,10 +205,7 @@
                 _last$storage = angular.copy($storage);
 
                 $rootScope.$watch(function() {
-                   if (!_debounce) {
-                     setTimeout($storage.$apply, 100);
-                     _debounce = true;
-                   }
+                    _debounce || (_debounce = $interval($storage.$apply, 100, 1, false));
                 });
 
                 // #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
